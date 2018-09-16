@@ -28,10 +28,6 @@ const Header = ({postId, logged, onRemove}) => (
       <a href="https://github.com/YongPilMoon" target="_blank">
         <img className={cx('github')} src={github} alt="github"/>
       </a>
-      {/*<label className={cx('nick')} For="about-toggle">*/}
-        {/*<img className={cx('nick-picture')} src={nick} alt="nick picture"/>*/}
-        {/*<figcaption className={cx('nick-text')}>NICK</figcaption>*/}
-      {/*</label>*/}
     </div>
     <About/>
   </header>

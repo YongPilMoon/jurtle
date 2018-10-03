@@ -1,8 +1,9 @@
-import React, {Component} from 'react';
+import React, {Component, Fragment} from 'react';
 import PostInfo from 'components/post/PostInfo';
 import PostBody from 'components/post/PostBody';
 import {connect} from 'react-redux';
 import {getPost} from "../../store/actionCreators/post";
+import {Helmet} from "react-helmet";
 
 class Post extends Component {
   initialize = () => {
@@ -23,10 +24,15 @@ class Post extends Component {
     const { title, body, publishedDate, tags } = post.toJS();
 
     return (
-      <div>
-        <PostInfo title={title} publishedDate={publishedDate} tags={tags}/>
-        <PostBody body={body}/>
-      </div>
+      <Fragment>
+        <Helmet>
+          <title>{title}</title>
+        </Helmet>
+        <div>
+          <PostInfo title={title} publishedDate={publishedDate} tags={tags}/>
+          <PostBody body={body}/>
+        </div>
+      </Fragment>
     );
   }
 }

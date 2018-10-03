@@ -3,7 +3,6 @@ import styles from './Header.scss';
 import classNames from 'classnames/bind';
 import { Link } from 'react-router-dom';
 import Button from 'components/common/Button';
-import About from 'components/common/About';
 import { jurtleLogo, github } from 'static/image';
 
 const cx = classNames.bind(styles);
@@ -29,7 +28,6 @@ const Header = ({postId, logged, onRemove}) => (
         <img className={cx('github')} src={github} alt="github"/>
       </a>
     </div>
-    <About/>
   </header>
 );
 

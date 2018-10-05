@@ -10,7 +10,7 @@ const Footer = () => {
   return (
     <footer className={cx('footer')}>
       <Link to="/" className={cx('brand')}>
-        <img  className={cx('footer-logo')} src={jurtleLogo} alt="jurtle logo"/>
+        <span className={cx('footer-logo')}>Jurtle</span>
       </Link>
     </footer>
   );

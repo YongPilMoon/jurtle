@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, Fragment} from 'react';
 import PostList from '../../components/list/PostList';
 import Pagination from '../../components/list/Pagination';
 import {connect} from 'react-redux';
@@ -28,10 +28,10 @@ class ListContainer extends Component {
   render() {
     const { posts, page, lastPage, tag } = this.props;
     return (
-      <div>
+      <Fragment>
         <PostList posts={posts}/>
         <Pagination page={page} lastPage={lastPage} tag={tag}/>
-      </div>
+      </Fragment>
     );
   }
 }

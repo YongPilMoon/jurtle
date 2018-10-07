@@ -28,7 +28,7 @@ class EditorPane extends Component {
 
     render() {
       const { handleChange } = this;
-      const { tags, title, markdown } = this.props;
+      const { title, markdown, tags, mainImg } = this.props;
 
       return (
         <div className={cx('editor-pane')}>
@@ -49,7 +49,11 @@ class EditorPane extends Component {
               this.props.onChangeInput({ name: 'markdown', value });
             }}
           />
-          <div className={cx('tags')}>
+          <div className={cx('input-wrapper')}>
+            <div className={cx('description')}>메인 이미지</div>
+            <input name="mainImg" placeholder="메인 이미지 URL을 입력하세요" value={mainImg} onChange={handleChange} />
+          </div>
+          <div className={cx('input-wrapper')}>
             <div className={cx('description')}>태그</div>
             <input name="tags" placeholder="태그를 입력하세요 (쉼표로 구분)" value={tags} onChange={handleChange} />
           </div>
@@ -60,9 +64,10 @@ class EditorPane extends Component {
 
 EditorPane.propTypes = {
   onChangeInput: PropTypes.func.isRequired,
-  tags: PropTypes.arrayOf(PropTypes.string).isRequired,
   title: PropTypes.string.isRequired,
   markdown: PropTypes.string.isRequired,
+  tags: PropTypes.arrayOf(PropTypes.string).isRequired,
+  mainImg: PropTypes.string.isRequired,
 };
 
 export default EditorPane;

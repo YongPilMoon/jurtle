@@ -10,7 +10,7 @@ class EditorPaneContainer extends Component {
   };
 
   render() {
-    const { title, tags, markdown } = this.props;
+    const { title, tags, markdown, mainImg } = this.props;
     const { handleChangeInput } = this;
 
     return (
@@ -18,6 +18,7 @@ class EditorPaneContainer extends Component {
         title={title}
         markdown={markdown}
         tags={tags}
+        mainImg={mainImg}
         onChangeInput={handleChangeInput}
       />
     );
@@ -33,5 +34,6 @@ export default connect(
     title: state.editor.get('title'),
     markdown: state.editor.get('markdown'),
     tags: state.editor.get('tags'),
+    mainImg: state.editor.get('mainImg'),
   }), mapDispatchToProps,
 )(EditorPaneContainer);

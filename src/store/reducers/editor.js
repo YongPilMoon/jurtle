@@ -9,6 +9,7 @@ import { EDITOR_INITIALIZE,
 const initialState = Map({
   title: '',
   markdown: '',
+  mainImg: '',
   tags: '',
   postId: null,
 });
@@ -25,9 +26,10 @@ export default handleActions({
     return state.set('postId', _id);
   },
   [EDITOR_GET_POST]: (state, action) => {
-    const { title, tags, body } = action.payload;
+    const { title, tags, body, mainImg } = action.payload;
     return state.set('title', title)
       .set('markdown', body)
-      .set('tags', tags.join(', '));
+      .set('tags', tags.join(', '))
+      .set('mainImg', mainImg);
   },
 }, initialState);

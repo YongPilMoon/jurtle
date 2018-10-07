@@ -1,26 +1,21 @@
 import React, { Component } from 'react';
-import styles from './EditorPane.scss';
 import classNames from 'classnames/bind';
+import PropTypes from 'prop-types';
 
-import CodMirror from 'codemirror';
+// CodeMirror를 위한 CSS 스타일
+import 'codemirror/lib/codemirror.css';
+import 'codemirror/theme/monokai.css';
 
 import 'codemirror/mode/markdown/markdown'; // 마크다운 문법 색
 import 'codemirror/mode/javascript/javascript';
 import 'codemirror/mode/jsx/jsx';
 import 'codemirror/mode/css/css';
 import 'codemirror/mode/shell/shell';
-
-// CodeMirror를 위한 CSS 스타일
-import 'codemirror/lib/codemirror.css';
-import 'codemirror/theme/monokai.css';
 import { Controlled as CodeMirror } from 'react-codemirror2';
 
-import 'codemirror/mode/markdown/markdown';
-import 'codemirror/mode/javascript/javascript';
-import 'codemirror/mode/jsx/jsx';
-import 'codemirror/mode/css/css';
-import 'codemirror/mode/shell/shell';
-import PropTypes from 'prop-types';
+
+import styles from './EditorPane.scss';
+
 
 const cx = classNames.bind(styles);
 
@@ -63,6 +58,11 @@ class EditorPane extends Component {
     }
 }
 
-EditorPane.propTypes = {};
+EditorPane.propTypes = {
+  onChangeInput: PropTypes.func.isRequired,
+  tags: PropTypes.arrayOf(PropTypes.string).isRequired,
+  title: PropTypes.string.isRequired,
+  markdown: PropTypes.string.isRequired,
+};
 
 export default EditorPane;

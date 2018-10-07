@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styles from './ModalWrapper.scss';
 import classNames from 'classnames/bind';
@@ -7,24 +7,24 @@ const cx = classNames.bind(styles);
 
 class ModalWrapper extends Component {
   state = {
-    animate: false
+    animate: false,
   };
 
   startAnimation = () => {
     this.setState({
-      animate: true
+      animate: true,
     });
 
     setTimeout(() => {
       this.setState({
-        animate: false
+        animate: false,
       });
-    }, 250)
+    }, 250);
   };
 
 
   componentDidUpdate(prevProps, prevState) {
-    if(prevProps.visible !== this.props.visible) {
+    if (prevProps.visible !== this.props.visible) {
       this.startAnimation();
     }
   }
@@ -33,12 +33,12 @@ class ModalWrapper extends Component {
     const { children, visible } = this.props;
     const { animate } = this.state;
 
-    if(!visible && !animate) return null;
+    if (!visible && !animate) return null;
 
     const animation = animate && (visible ? 'enter' : 'leave');
     return (
       <div>
-        <div className={cx('gray-background', animation)}/>
+        <div className={cx('gray-background', animation)} />
         <div className={cx('modal-wrapper')}>
           <div className={cx('modal', animation)}>
             { children }

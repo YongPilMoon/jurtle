@@ -10,7 +10,7 @@ const cx = classNames.bind(styles);
 
 const PostItem = ({ title, body, publishedDate, tags, id }) => {
   const tagList = tags.map(
-    tag => <Link key={tag} to={`/tag/${tag}`}>#{tag}</Link>
+    tag => <Link key={tag} to={`/tag/${tag}`}>#{tag}</Link>,
   );
 
   return (
@@ -27,21 +27,21 @@ const PostItem = ({ title, body, publishedDate, tags, id }) => {
   );
 };
 
-const PostList = ({posts}) => (
+const PostList = ({ posts }) => (
   <div className={cx('post-list')}>
     { _.map(posts, (post) => {
-        const { _id, title, body, publishedDate , tags } = post;
-        return (
-          <PostItem
-            title={title}
-            body={body}
-            publishedDate={publishedDate}
-            tags={tags}
-            key={_id}
-            id={_id}
-          />
-        )
-      }
+      const { _id, title, body, publishedDate, tags } = post;
+      return (
+        <PostItem
+          title={title}
+          body={body}
+          publishedDate={publishedDate}
+          tags={tags}
+          key={_id}
+          id={_id}
+        />
+      );
+    },
     )}
   </div>
 );

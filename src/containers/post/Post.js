@@ -1,9 +1,9 @@
-import React, {Component, Fragment} from 'react';
+import React, { Component, Fragment } from 'react';
 import PostInfo from 'components/post/PostInfo';
 import PostBody from 'components/post/PostBody';
-import {connect} from 'react-redux';
-import {getPost} from "../../store/actionCreators/post";
-import {Helmet} from "react-helmet";
+import { connect } from 'react-redux';
+import { getPost } from '../../store/actionCreators/post';
+import { Helmet } from 'react-helmet';
 
 class Post extends Component {
   initialize = () => {
@@ -19,7 +19,7 @@ class Post extends Component {
   render() {
     const { loading, post } = this.props;
 
-    if(loading) return null; // 로딩중일땐 아무것도 보여주지 않음
+    if (loading) return null; // 로딩중일땐 아무것도 보여주지 않음
 
     const { title, body, publishedDate, tags } = post.toJS();
 
@@ -29,8 +29,8 @@ class Post extends Component {
           <title>{title}</title>
         </Helmet>
         <div>
-          <PostInfo title={title} publishedDate={publishedDate} tags={tags}/>
-          <PostBody body={body}/>
+          <PostInfo title={title} publishedDate={publishedDate} tags={tags} />
+          <PostBody body={body} />
         </div>
       </Fragment>
     );
@@ -39,11 +39,11 @@ class Post extends Component {
 
 Post.propTypes = {};
 
-const mapDispatchToProps = (dispatch) => ({
-  getPost: (id) => dispatch(getPost(id))
+const mapDispatchToProps = dispatch => ({
+  getPost: id => dispatch(getPost(id)),
 });
 
 export default connect(
-  (state) => ({
+  state => ({
     post: state.post.get('post'),
-  }),mapDispatchToProps)(Post);
+  }), mapDispatchToProps)(Post);

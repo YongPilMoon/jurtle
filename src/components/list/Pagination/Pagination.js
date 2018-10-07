@@ -5,10 +5,8 @@ import Button from '../../common/Button';
 
 const cx = classNames.bind(styles);
 
-const Pagination = ({page, lastPage, tag}) => {
-  const createPagePath = (page => {
-    return tag ? `/tag/${tag}/${page}` : `/page/${page}`
-  });
+const Pagination = ({ page, lastPage, tag }) => {
+  const createPagePath = (page => (tag ? `/tag/${tag}/${page}` : `/page/${page}`));
 
   return (
     <div className={cx('pagination')}>
@@ -18,7 +16,7 @@ const Pagination = ({page, lastPage, tag}) => {
       <div className={cx('number')}>
         페이지 {page}
       </div>
-      <Button disabled={page===lastPage} to={createPagePath(page + 1)}>
+      <Button disabled={page === lastPage} to={createPagePath(page + 1)}>
         다음 페이지
       </Button>
     </div>

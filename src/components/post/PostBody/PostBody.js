@@ -6,14 +6,12 @@ import Paper from '@material-ui/core/Paper';
 
 const cx = classNames.bind(styles);
 
-const PostBody = ({body}) => {
-  return (
-    <div className={cx('post-body')}>
-      <Paper className={cx('paper')}>
-        <MarkdownRender markdown={body}/>
-      </Paper>
-    </div>
-  );
-};
+const PostBody = ({ body }) => (
+  <div className={cx('post-body')}>
+    <Paper className={cx('paper')}>
+      <MarkdownRender markdown={body} />
+    </Paper>
+  </div>
+);
 
 export default PostBody;

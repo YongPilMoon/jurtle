@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import EditorHeader from '../../components/editor/EditorHeader';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { initialize, writePost, editPost } from "../../store/actionCreators/editor";
-import { queryParser } from "../../helper";
-import { getPost } from "../../store/actionCreators/editor";
+import { initialize, writePost, editPost } from '../../store/actionCreators/editor';
+import { queryParser } from '../../helper';
+import { getPost } from '../../store/actionCreators/editor';
 
 class EditorHeaderContainer extends Component {
   componentDidMount() {
@@ -12,10 +12,9 @@ class EditorHeaderContainer extends Component {
     initialize(); // 에디터를 초기화 합니다.
 
     const { id } = queryParser(location.search);
-    if(id) {
+    if (id) {
       this.props.getPost(id);
     }
-
   }
 
   handleGoBack = () => {
@@ -29,13 +28,13 @@ class EditorHeaderContainer extends Component {
       title,
       body: markdown,
       // 태그 텍스트를 , 로 분리시키고 앞뒤 공백을 지운 후 중복 되는 값을 제거해줍니다.
-      tags: tags === "" ? [] : [...new Set(tags.split(',').map(tag => tag.trim()))]
+      tags: tags === '' ? [] : [...new Set(tags.split(',').map(tag => tag.trim()))],
     };
     try {
       const { id } = queryParser(location.search);
 
-      if(id) {
-        await editPost({ id, ...post});
+      if (id) {
+        await editPost({ id, ...post });
         history.push(`/post/${id}`);
         return;
       }
@@ -51,7 +50,7 @@ class EditorHeaderContainer extends Component {
 
   render() {
     const { handleGoBack, handleSubmit } = this;
-    const { id }= queryParser(this.props.location.search);
+    const { id } = queryParser(this.props.location.search);
     return (
       <EditorHeader
         onGoBack={handleGoBack}
@@ -62,19 +61,19 @@ class EditorHeaderContainer extends Component {
   }
 }
 
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = dispatch => ({
   initialize: () => dispatch(initialize()),
-  writePost: (post) => dispatch(writePost(post)),
-  getPost: (id) => dispatch(getPost(id)),
-  editPost: (post) => dispatch(editPost(post))
+  writePost: post => dispatch(writePost(post)),
+  getPost: id => dispatch(getPost(id)),
+  editPost: post => dispatch(editPost(post)),
 });
 
 export default connect(
-  (state) => ({
+  state => ({
     title: state.editor.get('title'),
     markdown: state.editor.get('markdown'),
     tags: state.editor.get('tags'),
-    postId: state.editor.get('postId')
+    postId: state.editor.get('postId'),
   }),
-  mapDispatchToProps
+  mapDispatchToProps,
 )(withRouter(EditorHeaderContainer));

@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import Footer from 'components/common/Footer';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -16,7 +16,7 @@ class FooterContainer extends Component {
 FooterContainer.propTypes = {};
 
 export default connect(
-  (state) => ({
-    logged: state.base.get('logged')
-  }), null
+  state => ({
+    logged: state.base.get('logged'),
+  }), null,
 )(FooterContainer);

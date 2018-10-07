@@ -3,9 +3,9 @@ import PageTemplate from 'components/common/PageTemplate';
 import ListWrapper from 'components/list/ListWrapper';
 import ListContainer from 'containers/list/ListContainer';
 import CategoryContainer from 'containers/list/CategoryConatiner';
-import {Helmet} from "react-helmet";
+import { Helmet } from 'react-helmet';
 
-const ListPage = ({match}) => {
+const ListPage = ({ match }) => {
   const { page = 1, tag } = match.params;
 
   return (
@@ -13,7 +13,7 @@ const ListPage = ({match}) => {
       <Helmet>
         <title>Development blog jurtle</title>
       </Helmet>
-      <CategoryContainer/>
+      <CategoryContainer />
       <ListWrapper>
         <ListContainer
           page={parseInt(page, 10)}

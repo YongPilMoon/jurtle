@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import EditorPane from '../../components/editor/EditorPane';
 import { connect } from 'react-redux';
-import { changeInput } from "../../store/actionCreators/editor";
+import { changeInput } from '../../store/actionCreators/editor';
 
 class EditorPaneContainer extends Component {
-  handleChangeInput = ({name, value}) => {
+  handleChangeInput = ({ name, value }) => {
     const { changeInput } = this.props;
-    changeInput({name, value});
+    changeInput({ name, value });
   };
 
   render() {
@@ -24,14 +24,14 @@ class EditorPaneContainer extends Component {
   }
 }
 
-const mapDispatchToProps = (dispatch) => ({
-  changeInput: (payload) => dispatch(changeInput(payload))
+const mapDispatchToProps = dispatch => ({
+  changeInput: payload => dispatch(changeInput(payload)),
 });
 
 export default connect(
-  (state) => ({
+  state => ({
     title: state.editor.get('title'),
     markdown: state.editor.get('markdown'),
-    tags: state.editor.get('tags')
-  }), mapDispatchToProps
+    tags: state.editor.get('tags'),
+  }), mapDispatchToProps,
 )(EditorPaneContainer);

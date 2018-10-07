@@ -1,5 +1,6 @@
 import { Map } from 'immutable';
 import { handleActions } from 'redux-actions';
+
 export const SHOW_MODAL = 'base/SHOW_MODAL';
 export const HIDE_MODAL = 'base/HIDE_MODAL';
 
@@ -14,13 +15,13 @@ export const TEMP_LOGIN = 'base/TEMP_LOGIN';
 const initialState = Map({
   modal: Map({
     remove: false,
-    login: false
+    login: false,
   }),
   loginModal: Map({
     password: '',
-    error: false
+    error: false,
   }),
-  logged: false
+  logged: false,
 });
 
 export default handleActions({
@@ -32,13 +33,9 @@ export default handleActions({
     const { payload: modalName } = action;
     return state.setIn(['modal', modalName], false);
   },
-  [LOGIN]: (state, action) => {
-    return state.set('logged', true);
-  },
-  [LOGIN_FAIL]: (state, action) => {
-    return state.setIn(['loginModal', 'error'], true)
-      .setIn(['loginModal', 'password'], '')
-  },
+  [LOGIN]: (state, action) => state.set('logged', true),
+  [LOGIN_FAIL]: (state, action) => state.setIn(['loginModal', 'error'], true)
+    .setIn(['loginModal', 'password'], ''),
   [CHECK_LOGIN]: (state, action) => {
     const { logged } = action.payload.data;
     return state.set('logged', logged);
@@ -47,10 +44,6 @@ export default handleActions({
     const { payload: value } = action;
     return state.setIn(['loginModal', 'password'], value);
   },
-  [INITIALIZE_LOGIN_MODAL]: (state, action) => {
-    return state.set('loginModal', initialState.get('loginModal'));
-  },
-  [TEMP_LOGIN]: (state, action) => {
-    return state.set('logged', true);
-  }
-}, initialState)
+  [INITIALIZE_LOGIN_MODAL]: (state, action) => state.set('loginModal', initialState.get('loginModal')),
+  [TEMP_LOGIN]: (state, action) => state.set('logged', true),
+}, initialState);

@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import styles from './EditorTemplate.scss';
 import classNames from 'classnames/bind';
 import PropTypes from 'prop-types';
@@ -6,14 +6,14 @@ import PropTypes from 'prop-types';
 const cx = classNames.bind(styles);
 
 class EditorTemplate extends Component {
-  state =  {
-    leftPercentage: 0.5
+  state = {
+    leftPercentage: 0.5,
   };
 
   // separator 클릭 후 마우스를 움직이면 그에 따라 leftPercentage 업데이트
   handleMouseMove = (e) => {
     this.setState({
-      leftPercentage: e.clientX / window.innerWidth
+      leftPercentage: e.clientX / window.innerWidth,
     });
   };
 
@@ -36,22 +36,22 @@ class EditorTemplate extends Component {
 
     // 각 세션에 flex 값 적용
     const leftStyle = {
-      flex: leftPercentage
+      flex: leftPercentage,
     };
 
     const rightStyle = {
-      flex: 1 - leftPercentage
+      flex: 1 - leftPercentage,
     };
 
     // separator 위치 설정
     const separatorStyle = {
-      left: `${leftPercentage * 100}%`
+      left: `${leftPercentage * 100}%`,
     };
 
     return (
       <div className={cx('editor-template')}>
         { header }
-         <div className={cx('panes')}>
+        <div className={cx('panes')}>
           <div className={cx('pane', 'editor')} style={leftStyle}>
             {editor}
           </div>
@@ -61,7 +61,8 @@ class EditorTemplate extends Component {
           <div
             className={cx('separator')}
             style={separatorStyle}
-            onMouseDown={handleSeperatorMouseDown}/>
+            onMouseDown={handleSeperatorMouseDown}
+          />
         </div>
       </div>
     );

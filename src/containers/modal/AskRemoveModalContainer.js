@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { withRouter } from 'react-router-dom';
@@ -28,7 +28,7 @@ class AskRemoveModalContainer extends Component {
     const { visible } = this.props;
     const { handleCancel, handleConfirm } = this;
     return (
-      <AskRemoveModal visible={visible} onCancel={handleCancel} onConfirm={handleConfirm}/>
+      <AskRemoveModal visible={visible} onCancel={handleCancel} onConfirm={handleConfirm} />
     );
   }
 }
@@ -36,11 +36,11 @@ class AskRemoveModalContainer extends Component {
 AskRemoveModalContainer.propTypes = {};
 
 export default connect(
-  (state) => ({
-    visible: state.base.getIn(['modal', 'remove'])
+  state => ({
+    visible: state.base.getIn(['modal', 'remove']),
   }),
-  (dispatch) => ({
+  dispatch => ({
     BaseActions: bindActionCreators(baseActions, dispatch),
-    PostActions: bindActionCreators(postActions, dispatch)
-  })
+    PostActions: bindActionCreators(postActions, dispatch),
+  }),
 )(withRouter(AskRemoveModalContainer));

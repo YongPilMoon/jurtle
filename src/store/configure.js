@@ -1,4 +1,4 @@
-import { createStore, applyMiddleware, compose, combineReducers} from 'redux';
+import { createStore, applyMiddleware, compose, combineReducers } from 'redux';
 import * as modules from './reducers';
 import ReduxThunk from 'redux-thunk';
 
@@ -11,8 +11,8 @@ const devtools = isDev && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__;
 const composeEnhancers = devtools || compose;
 
 // preloadedState 는 추후 서버사이드 렌더링이 되었을 때 전달받는 초기상태입니다.
-const configure = (preloadedState) => createStore(reducers, preloadedState, composeEnhancers(
-  applyMiddleware(...middlewares)
+const configure = preloadedState => createStore(reducers, preloadedState, composeEnhancers(
+  applyMiddleware(...middlewares),
 ));
 
 export default configure;

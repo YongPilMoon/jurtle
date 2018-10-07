@@ -7,16 +7,14 @@ import FooterContainer from 'containers/common/FooterContainer';
 
 const cx = classNames.bind(styles);
 
-const PageTemplate = ({children}) => {
-  return (
-    <div className={cx('page-template')}>
-      <HeaderContainer />
-      <main>
-        {children}
-      </main>
-      <FooterContainer/>
-    </div>
-  );
-};
+const PageTemplate = ({ children }) => (
+  <div className={cx('page-template')}>
+    <HeaderContainer />
+    <main>
+      {children}
+    </main>
+    <FooterContainer />
+  </div>
+);
 
 export default PageTemplate;

@@ -1,8 +1,8 @@
-import React, {Component, Fragment} from 'react';
+import React, { Component, Fragment } from 'react';
 import PostList from '../../components/list/PostList';
 import Pagination from '../../components/list/Pagination';
-import {connect} from 'react-redux';
-import { getPostList } from "../../store/actionCreators/list";
+import { connect } from 'react-redux';
+import { getPostList } from '../../store/actionCreators/list';
 
 
 class ListContainer extends Component {
@@ -11,15 +11,15 @@ class ListContainer extends Component {
   }
 
   dispatchGetPostList = () => {
-    const { tag, page, getPostList  } = this.props;
+    const { tag, page, getPostList } = this.props;
     getPostList({
       page,
-      tag
+      tag,
     });
   };
 
   componentDidUpdate(prevProps, prevState) {
-    if(prevProps.page !== this.props.page || prevProps.tag !== this.props.tag) {
+    if (prevProps.page !== this.props.page || prevProps.tag !== this.props.tag) {
       this.dispatchGetPostList();
       document.documentElement.scrollTop = 0;
     }
@@ -29,8 +29,8 @@ class ListContainer extends Component {
     const { posts, page, lastPage, tag } = this.props;
     return (
       <Fragment>
-        <PostList posts={posts}/>
-        <Pagination page={page} lastPage={lastPage} tag={tag}/>
+        <PostList posts={posts} />
+        <Pagination page={page} lastPage={lastPage} tag={tag} />
       </Fragment>
     );
   }
@@ -38,13 +38,13 @@ class ListContainer extends Component {
 
 ListContainer.propTypes = {};
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   lastPage: state.list.get('lastPage'),
   posts: state.list.get('posts').toJS(),
 });
 
-const mapDispatchToProps = (dispatch) => ({
-  getPostList: (payload) => dispatch(getPostList(payload))
+const mapDispatchToProps = dispatch => ({
+  getPostList: payload => dispatch(getPostList(payload)),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(ListContainer)
+export default connect(mapStateToProps, mapDispatchToProps)(ListContainer);

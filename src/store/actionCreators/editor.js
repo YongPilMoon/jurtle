@@ -8,47 +8,45 @@ export const EDITOR_EDIT_POST = 'EDITOR_EDIT_POST';
 
 // action creators
 export const initialize = () => ({
-  type: EDITOR_INITIALIZE
+  type: EDITOR_INITIALIZE,
 });
 
-export const changeInput = (payload) => {
-  return { type: EDITOR_CHANGE_INPUT,
-    payload
-  }
-};
+export const changeInput = payload => ({ type: EDITOR_CHANGE_INPUT,
+  payload,
+});
 
-export const writePost = (post) => async dispatch => {
-  try{
+export const writePost = post => async (dispatch) => {
+  try {
     const result = await api.writePost(post);
     dispatch({
       type: EDITOR_WRITE_POST,
-      payload: result.data
+      payload: result.data,
     });
-  } catch(e) {
+  } catch (e) {
     console.log(e);
   }
 };
 
-export const getPost = (id) => async dispatch => {
+export const getPost = id => async (dispatch) => {
   try {
     const result = await api.getPost(id);
     dispatch({
       type: EDITOR_GET_POST,
-      payload: result.data
-    })
-  } catch(e) {
+      payload: result.data,
+    });
+  } catch (e) {
     console.log(e);
   }
 };
 
-export const editPost = (post) => async dispatch => {
-  try{
+export const editPost = post => async (dispatch) => {
+  try {
     const result = await api.editPost(post);
     dispatch({
       type: EDITOR_EDIT_POST,
-      payload: result.data
-    })
-  } catch(e) {
+      payload: result.data,
+    });
+  } catch (e) {
     console.log(e);
   }
 };

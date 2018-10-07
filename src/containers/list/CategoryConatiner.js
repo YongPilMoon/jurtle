@@ -1,15 +1,15 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import Category from 'components/list/Category';
 
 class CategoryConatiner extends Component {
   constructor() {
     super();
-    this.categories = ['Javascript', 'React', 'Algorithm', 'Etc']
+    this.categories = ['Javascript', 'React', 'Algorithm', 'Etc'];
   }
 
   render() {
     return (
-      <Category categories={this.categories}/>
+      <Category categories={this.categories} />
     );
   }
 }

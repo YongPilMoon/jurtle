@@ -6,14 +6,12 @@ import { jurtleLogo } from 'static/image';
 
 const cx = classNames.bind(styles);
 
-const Footer = () => {
-  return (
-    <footer className={cx('footer')}>
-      <Link to="/" className={cx('brand')}>
-        <span className={cx('footer-logo')}>Jurtle</span>
-      </Link>
-    </footer>
-  );
-};
+const Footer = () => (
+  <footer className={cx('footer')}>
+    <Link to="/" className={cx('brand')}>
+      <span className={cx('footer-logo')}>Jurtle</span>
+    </Link>
+  </footer>
+);
 
 export default Footer;

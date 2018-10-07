@@ -1,25 +1,24 @@
-import React, {Component, Fragment} from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as baseActions from 'store/actionCreators/base';
 
 class AdminContainer extends Component {
-
   componentDidMount() {
     this.showLoginModal();
   }
 
   showLoginModal = async () => {
     const { BaseActions, logged } = this.props;
-    if(logged) {
+    if (logged) {
       try {
         BaseActions.logout();
         window.location.reload();
       } catch (e) {
         console.log(e);
       }
-      return
+      return;
     }
     BaseActions.showModal('login');
     BaseActions.initializeLoginModal();
@@ -35,10 +34,10 @@ class AdminContainer extends Component {
 AdminContainer.propTypes = {};
 
 export default connect(
-  (state) => ({
-    logged: state.base.get('logged')
+  state => ({
+    logged: state.base.get('logged'),
   }),
-  (dispatch) => ({
-    BaseActions: bindActionCreators(baseActions, dispatch)
-  })
+  dispatch => ({
+    BaseActions: bindActionCreators(baseActions, dispatch),
+  }),
 )(AdminContainer);

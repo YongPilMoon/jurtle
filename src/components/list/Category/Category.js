@@ -6,21 +6,21 @@ import styles from './Category.scss';
 
 const cx = classNames.bind(styles);
 
-const Category = ({categories}) => {
-  return (
-    <div className={cx('category-wrapper')}>
-      <NavLink to={"/"} activeClassName={cx('active')} exact className={cx('category-item')}>
+const Category = ({ categories }) => (
+  <div className={cx('category-wrapper')}>
+    <NavLink to={'/'} activeClassName={cx('active')} exact className={cx('category-item')}>
         All
-      </NavLink>
-      {_.map(categories, category =>
-        <NavLink to={`/tag/${category.toLowerCase()}`}
+    </NavLink>
+    {_.map(categories, category =>
+      (<NavLink
+        to={`/tag/${category.toLowerCase()}`}
         key={category}
         activeClassName={cx('active')}
-        className={cx('category-item')}>
+        className={cx('category-item')}
+      >
         {category}
-        </NavLink>)}
-    </div>
-  );
-};
+      </NavLink>))}
+  </div>
+);
 
 export default Category;

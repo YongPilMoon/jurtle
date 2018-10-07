@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
@@ -31,10 +31,10 @@ class HeaderContainer extends Component {
 HeaderContainer.propTypes = {};
 
 export default connect(
-  (state) => ({
-    logged: state.base.get('logged')
+  state => ({
+    logged: state.base.get('logged'),
   }),
-  (dispatch) => ({
-    BaseActions: bindActionCreators(baseActions, dispatch)
-  })
+  dispatch => ({
+    BaseActions: bindActionCreators(baseActions, dispatch),
+  }),
 )(withRouter(HeaderContainer));

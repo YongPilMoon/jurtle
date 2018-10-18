@@ -3,8 +3,11 @@
 
 .header {
   .header-content {
-    padding-left: 1px; padding-right: 1px; height: 8rem; width: 1040px; margin: 0 auto; // 중앙 정렬
-    display: flex; justify-content: space-between; align-items: center;
+    position: relative;
+    height: 8rem; width: 890px; margin: 0 auto; // 중앙 정렬
+    display: flex;
+    justify-content: center;
+    align-items: center;
     @include media("<wide") {
       width: 100%;
     }
@@ -13,13 +16,10 @@
     }
   }
   .header-logo { width: 80px; fill: black; }
-  .header-right-side { margin-left: auto; }
-
-  .github {
-    width: 45px;
-    &:hover {
-      opacity: 0.6;
-      cursor: pointer;
-    }
+  .logo-img { width: 100%; }
+  .header-right-side {
+    position: absolute;
+    display: flex;
+    right: 0;
   }
 }

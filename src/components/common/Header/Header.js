@@ -10,23 +10,22 @@ const cx = classNames.bind(styles);
 const Header = ({ postId, logged, onRemove }) => (
   <header className={cx('header')}>
     <div className={cx('header-content')}>
-      <Link to="/">
-        <img className={cx('header-logo')} src={jurtleLogo} alt="jurtle logo" />
+      <Link to="/" className={cx('header-logo')}>
+        <img className={cx('logo-img')} src={jurtleLogo} alt="jurtle logo" />
       </Link>
-      {logged && <div className={cx('header-right-side')}>
-        {
-          // flex 를 유지하기 위하여 배열 형태로 랜더링 합니다.
-          postId && [
-            <Button key="edit" theme="outline" to={`/editor?id=${postId}`}>수정</Button>,
-            <Button key="remove" theme="outline" onClick={onRemove}>삭제</Button>,
-          ]
+      <nav className={cx('header-right-side')}>
+        {logged && <div>
+          {
+            // flex 를 유지하기 위하여 배열 형태로 랜더링 합니다.
+            postId && [
+              <Button key="edit" theme="outline" to={`/editor?id=${postId}`}>수정</Button>,
+              <Button key="remove" theme="outline" onClick={onRemove}>삭제</Button>,
+            ]
+          }
+          <Button theme="outline" to="/editor">새 포스트</Button>
+        </div>
         }
-        <Button theme="outline" to="/editor">새 포스트</Button>
-      </div>
-      }
-      <a href="https://github.com/YongPilMoon" target="_blank">
-        <img className={cx('github')} src={github} alt="github" />
-      </a>
+      </nav>
     </div>
   </header>
 );

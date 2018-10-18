@@ -30,7 +30,7 @@ class ListContainer extends Component {
     return (
       <Fragment>
         <PostList posts={posts} />
-        <Pagination page={page} lastPage={lastPage} tag={tag} />
+        {/*<Pagination page={page} lastPage={lastPage} tag={tag} />*/}
       </Fragment>
     );
   }

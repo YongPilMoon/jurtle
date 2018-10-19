@@ -23,12 +23,13 @@ class EditorHeaderContainer extends Component {
   };
 
   handleSubmit = async () => {
-    const { title, markdown, tags, writePost, editPost, history, location } = this.props;
+    const { title, markdown, tags, writePost, editPost, history, location, mainImg } = this.props;
     const post = {
       title,
       body: markdown,
       // 태그 텍스트를 , 로 분리시키고 앞뒤 공백을 지운 후 중복 되는 값을 제거해줍니다.
       tags: tags === '' ? [] : [...new Set(tags.split(',').map(tag => tag.trim()))],
+      mainImg,
     };
     try {
       const { id } = queryParser(location.search);
@@ -73,6 +74,7 @@ export default connect(
     title: state.editor.get('title'),
     markdown: state.editor.get('markdown'),
     tags: state.editor.get('tags'),
+    mainImg: state.editor.get('mainImg'),
     postId: state.editor.get('postId'),
   }),
   mapDispatchToProps,

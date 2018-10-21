@@ -6,6 +6,10 @@ export const INIT_POST = 'INIT_POST';
 export const GET_POST = 'GET_POST';
 export const REMOVE_POST = 'REMOVE_POST';
 
+// initial state
+const initialState = Map({
+  post: Map({}),
+});
 
 export const initPost = createAction(INIT_POST);
 export const getPost = id => async (dispatch) => {
@@ -32,10 +36,7 @@ export const removePost = id => async (dispatch) => {
   }
 };
 
-// initial state
-const initialState = Map({
-  post: Map({}),
-});
+
 
 // reducer
 export default handleActions({

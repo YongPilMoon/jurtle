@@ -20,10 +20,7 @@ class Post extends Component {
   }
 
   render() {
-    const { loading, post } = this.props;
-
-    if (loading) return null; // 로딩중일땐 아무것도 보여주지 않음
-
+    const { post } = this.props;
     const { title, body, publishedDate, tags } = post.toJS();
 
     return (

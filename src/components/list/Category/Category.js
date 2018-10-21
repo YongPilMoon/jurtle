@@ -3,7 +3,7 @@ import _ from 'lodash';
 import classNames from 'classnames/bind';
 import { NavLink } from 'react-router-dom';
 import styles from './Category.scss';
-import github from "../../../static/image/github.png";
+import { imageStore } from '../../../config';
 
 const cx = classNames.bind(styles);
 
@@ -24,7 +24,11 @@ const Category = ({ categories }) => (
         </NavLink>))}
     </div>
     <a className={cx('github')} href="https://github.com/YongPilMoon" target="_blank">
-      <img className={cx('github-img')}src={github} alt="github" />
+      <img
+        className={cx('github-img')}
+        src={`${imageStore}github.png`}
+        alt="github"
+      />
     </a>
   </div>
 );

@@ -10,7 +10,7 @@ const cx = classNames.bind(styles);
 const PageTemplate = ({ children }) => (
   <div className={cx('page-template')}>
     <HeaderContainer />
-    <main>
+    <main style={{ position: 'relative' }}>
       {children}
     </main>
     <FooterContainer />

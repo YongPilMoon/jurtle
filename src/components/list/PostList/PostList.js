@@ -1,10 +1,12 @@
 import React from 'react';
-import styles from './PostList.scss';
 import classNames from 'classnames/bind';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
 import removeMd from 'remove-markdown';
 import _ from 'lodash';
+import { css } from 'react-emotion';
+import { BeatLoader } from 'react-spinners';
+import styles from './PostList.scss';
 
 const cx = classNames.bind(styles);
 
@@ -32,8 +34,15 @@ const PostItem = ({ title, body, publishedDate, tags, id, mainImg }) => {
   );
 };
 
-const PostList = ({ posts }) => (
-  <div className={cx('post-list')}>
+const override = css`
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%);
+`;
+
+const PostList = ({ posts, loading }) => (
+  loading ? <BeatLoader className={override} /> : <div className={cx('post-list')}>
     { _.map(posts, (post) => {
       const { _id, title, body, publishedDate, tags, mainImg } = post;
       return (

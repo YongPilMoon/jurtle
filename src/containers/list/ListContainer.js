@@ -1,8 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import PostList from '../../components/list/PostList';
-import Pagination from '../../components/list/Pagination';
 import { connect } from 'react-redux';
-import { getPostList } from '../../store/actionCreators/list';
+import { getPostList } from '../../store/reducers/list';
 
 
 class ListContainer extends Component {
@@ -26,10 +25,10 @@ class ListContainer extends Component {
   }
 
   render() {
-    const { posts, page, lastPage, tag } = this.props;
+    const { posts, loading } = this.props;
     return (
       <Fragment>
-        <PostList posts={posts} />
+        <PostList posts={posts} loading={loading} />
         {/*<Pagination page={page} lastPage={lastPage} tag={tag} />*/}
       </Fragment>
     );
@@ -41,6 +40,7 @@ ListContainer.propTypes = {};
 const mapStateToProps = state => ({
   lastPage: state.list.get('lastPage'),
   posts: state.list.get('posts').toJS(),
+  loading: state.list.get('loading'),
 });
 
 const mapDispatchToProps = dispatch => ({

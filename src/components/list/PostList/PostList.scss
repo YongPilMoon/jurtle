@@ -4,19 +4,28 @@
   border-top: 1px solid $color-black-1;
   .post-item {
     display: flex;
-    height: 20rem;
+    align-items: center;
     transition: all .15s ease-in;
+    border-radius: 4px;
+    margin-top: 1.6rem;
     box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2),
     0px 1px 1px 0px rgba(0, 0, 0, 0.14),
     0px 2px 1px -1px rgba(0, 0, 0, 0.12);
-    border-radius: 4px;
-    margin-top: 1.6rem;
     .content {
       padding: 1.6rem 2.4rem 2.4rem;
-      width: 70%;
+      width: calc(100% - 200px);
+      @include media("<medium") { // 600px
+        padding: 10px 15px 15px;
+        width: calc(100% - 90px);
+      }
     }
     .thumbnail-box {
-      width: 30%;
+      width: 200px;
+      height: 200px;
+      @include media("<medium") { // 600px
+        width: 90px;
+        height: 90px;
+      }
       background-position: center;
       background-size: cover;
       border-top-right-radius: 4px;
@@ -27,6 +36,11 @@
     }
     .post-header {
       justify-content: space-between;
+    }
+    .post-description {
+      @include media("<medium") { // 600px
+        display: none;
+      }
     }
     h2 {
       letter-spacing: -.4px;

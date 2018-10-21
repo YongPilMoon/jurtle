@@ -17,16 +17,17 @@ const PostItem = ({ title, body, publishedDate, tags, id, mainImg }) => {
     <div key={id} className={cx('post-item')}>
       <div className={cx('content')}>
         <div className={cx('post-header')}>
-          <h2><Link to={`/post/${id}`}>{title}</Link></h2>
+          <Link to={`/post/${id}`}>
+            <h2>{title}</h2>
+          </Link>
           <div className={cx('date')}>{moment(publishedDate).format('ll')}</div>
         </div>
-        <p>{removeMd(body)}</p>
+        <p className={cx('post-description')}>{removeMd(body)}</p>
         <div className={cx('tags')}>
           {tagList}
         </div>
       </div>
-        <div className={cx('thumbnail-box')} style={{ backgroundImage: `url(${mainImg})` }}>
-      </div>
+      <div className={cx('thumbnail-box')} style={{ backgroundImage: `url(${mainImg})` }} />
     </div>
   );
 };

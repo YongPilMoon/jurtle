@@ -1,10 +1,19 @@
 /* body, 타이포그래피 등의 기본 스타일 설정 */
+@import 'lib/all';
 @import url("//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css");
 @import url("//cdn.jsdelivr.net/gh/velopert/font-d2coding@1.2.1/d2coding.css");
 
 html {
   // This defines what 1rem is
-  font-size: 62.5%; // 1rem = 10px; 10px/16px = 62.5%
+  font-size: 10px; // 1rem = 10px; 10px/16px = 62.5%
+
+  @include media("<large") { // 1024p
+    font-size: 9px; //1 rem = 9px, 8/16 = 50%
+  }
+
+  @include media("<medium") { // 600px
+    font-size: 8px; // 1rem = 8px, 8/16 = 50%
+  }
 }
 
 body {
@@ -13,7 +22,6 @@ body {
   font-family: "Spoqa Han Sans", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-size: 14px;
   line-height: 1.57;
   color: #343a40;
 }

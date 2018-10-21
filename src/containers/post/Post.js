@@ -26,7 +26,7 @@ class Post extends Component {
     return (
       <Fragment>
         <Helmet>
-          <title>{title}</title>
+          <title>{`${title} :: jurtle`}</title>
         </Helmet>
         <div>
           <PostInfo title={title} publishedDate={publishedDate} tags={tags} />

@@ -1,9 +1,9 @@
 import React, { Component, Fragment } from 'react';
+import { Helmet } from 'react-helmet';
+import { connect } from 'react-redux';
 import PostInfo from 'components/post/PostInfo';
 import PostBody from 'components/post/PostBody';
-import { connect } from 'react-redux';
-import { getPost } from '../../store/actionCreators/post';
-import { Helmet } from 'react-helmet';
+import { getPost, initPost } from '../../store/reducers/post';
 
 class Post extends Component {
   initialize = () => {
@@ -11,9 +11,12 @@ class Post extends Component {
     getPost(id);
   };
 
-
   componentDidMount() {
     this.initialize();
+  }
+
+  componentWillUnmount() {
+    this.props.initPost();
   }
 
   render() {
@@ -41,6 +44,7 @@ Post.propTypes = {};
 
 const mapDispatchToProps = dispatch => ({
   getPost: id => dispatch(getPost(id)),
+  initPost: () => dispatch(initPost()),
 });
 
 export default connect(

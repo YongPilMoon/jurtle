@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { withRouter } from 'react-router-dom';
 import * as baseActions from '../../store/actionCreators/base';
-import * as postActions from '../../store/actionCreators/post';
+import * as postActions from '../../store/reducers/post';
 import AskRemoveModal from '../../components/modal/AskRemoveModal';
 
 class AskRemoveModalContainer extends Component {

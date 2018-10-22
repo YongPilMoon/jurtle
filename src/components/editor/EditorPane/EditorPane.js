@@ -83,7 +83,7 @@ EditorPane.propTypes = {
   onChangeInput: PropTypes.func.isRequired,
   title: PropTypes.string.isRequired,
   markdown: PropTypes.string.isRequired,
-  tags: PropTypes.arrayOf(PropTypes.string).isRequired,
+  tags: PropTypes.string.isRequired,
   mainImg: PropTypes.string.isRequired,
   published: PropTypes.bool.isRequired,
 };

@@ -37,12 +37,10 @@ export const removePost = id => async (dispatch) => {
 };
 
 
-
 // reducer
 export default handleActions({
   [GET_POST]: (state, action) => {
     const post = action.payload;
-    console.log(post);
     return state.set('post', fromJS(post));
   },
   [INIT_POST]: (state, action) => initialState,

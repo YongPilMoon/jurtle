@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import EditorHeader from '../../components/editor/EditorHeader';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { initialize, writePost, editPost } from '../../store/actionCreators/editor';
+import { initialize, writePost, editPost } from '../../store/reducers/editor';
 import { queryParser } from '../../helper';
-import { getPost } from '../../store/actionCreators/editor';
+import { getPost } from '../../store/reducers/editor';
 
 class EditorHeaderContainer extends Component {
   componentDidMount() {
@@ -23,13 +23,14 @@ class EditorHeaderContainer extends Component {
   };
 
   handleSubmit = async () => {
-    const { title, markdown, tags, writePost, editPost, history, location, mainImg } = this.props;
+    const { title, markdown, tags, writePost, editPost, history, location, mainImg, published } = this.props;
     const post = {
       title,
       body: markdown,
       // 태그 텍스트를 , 로 분리시키고 앞뒤 공백을 지운 후 중복 되는 값을 제거해줍니다.
       tags: tags === '' ? [] : [...new Set(tags.split(',').map(tag => tag.trim()))],
       mainImg,
+      published,
     };
     try {
       const { id } = queryParser(location.search);
@@ -76,6 +77,7 @@ export default connect(
     tags: state.editor.get('tags'),
     mainImg: state.editor.get('mainImg'),
     postId: state.editor.get('postId'),
+    published: state.editor.get('published'),
   }),
   mapDispatchToProps,
 )(withRouter(EditorHeaderContainer));

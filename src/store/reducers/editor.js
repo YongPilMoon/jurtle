@@ -1,9 +1,13 @@
-import { handleActions } from 'redux-actions';
+import { handleActions, createAction } from 'redux-actions';
 import { Map } from 'immutable';
-import { EDITOR_INITIALIZE,
-  EDITOR_CHANGE_INPUT,
-  EDITOR_WRITE_POST,
-  EDITOR_GET_POST } from '../actionCreators/editor';
+import * as api from '../../lib/api';
+
+export const EDITOR_INITIALIZE = 'EDITOR_INITIALIZE';
+export const EDITOR_CHANGE_INPUT = 'EDITOR_CHANGE_INPUT';
+export const EDITOR_WRITE_POST = 'EDITOR_WRITE_POST';
+export const EDITOR_GET_POST = 'EDITOR_GET_POST';
+export const EDITOR_EDIT_POST = 'EDITOR_EDIT_POST';
+export const EDITOR_CHANGE_PUBLISHED = 'EDITOR_CHANGE_PUBLISHED';
 
 // initial state
 const initialState = Map({
@@ -11,8 +15,55 @@ const initialState = Map({
   markdown: '',
   mainImg: '',
   tags: '',
+  published: false,
   postId: null,
 });
+
+// action creators
+export const initialize = () => ({
+  type: EDITOR_INITIALIZE,
+});
+
+export const changeInput = payload => ({ type: EDITOR_CHANGE_INPUT,
+  payload,
+});
+
+export const writePost = post => async (dispatch) => {
+  try {
+    const result = await api.writePost(post);
+    dispatch({
+      type: EDITOR_WRITE_POST,
+      payload: result.data,
+    });
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+export const getPost = id => async (dispatch) => {
+  try {
+    const result = await api.getPost(id);
+    dispatch({
+      type: EDITOR_GET_POST,
+      payload: result.data,
+    });
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+export const editPost = post => async (dispatch) => {
+  try {
+    const result = await api.editPost(post);
+    dispatch({
+      type: EDITOR_EDIT_POST,
+      payload: result.data,
+    });
+  } catch (e) {
+    console.log(e);
+  }
+};
+export const changePublished = createAction(EDITOR_CHANGE_PUBLISHED);
 
 // reducer
 export default handleActions({
@@ -26,10 +77,12 @@ export default handleActions({
     return state.set('postId', _id);
   },
   [EDITOR_GET_POST]: (state, action) => {
-    const { title, tags, body, mainImg } = action.payload;
+    const { title, tags, body, mainImg, published } = action.payload;
     return state.set('title', title)
       .set('markdown', body)
       .set('tags', tags.join(', '))
-      .set('mainImg', mainImg);
+      .set('mainImg', mainImg)
+      .set('published', published);
   },
+  [EDITOR_CHANGE_PUBLISHED]: (state, action) => state.set('published', action.payload),
 }, initialState);

@@ -26,9 +26,13 @@ class EditorPane extends Component {
       onChangeInput({ name, value });
     };
 
+    handlePublishedChange = (value) => {
+      this.props.changePublished(value);
+    };
+
     render() {
-      const { handleChange } = this;
-      const { title, markdown, tags, mainImg } = this.props;
+      const { handleChange, handlePublishedChange } = this;
+      const { title, markdown, tags, mainImg, published } = this.props;
 
       return (
         <div className={cx('editor-pane')}>
@@ -50,6 +54,18 @@ class EditorPane extends Component {
             }}
           />
           <div className={cx('input-wrapper')}>
+            <label className={cx('description')} htmlFor="published">Published</label>
+            <input
+              name="published" type="radio" id="published" onChange={() => handlePublishedChange(true)}
+              checked={published}
+            />
+            <label className={cx('description')} htmlFor="NoPublished">No Published</label>
+            <input
+              name="published" type="radio" id="NoPublished" onChange={() => handlePublishedChange(false)}
+              checked={!published}
+            />
+          </div>
+          <div className={cx('input-wrapper')}>
             <div className={cx('description')}>메인 이미지</div>
             <input name="mainImg" placeholder="메인 이미지 URL을 입력하세요" value={mainImg} onChange={handleChange} />
           </div>
@@ -63,11 +79,13 @@ class EditorPane extends Component {
 }
 
 EditorPane.propTypes = {
+  changePublished: PropTypes.func.isRequired,
   onChangeInput: PropTypes.func.isRequired,
   title: PropTypes.string.isRequired,
   markdown: PropTypes.string.isRequired,
   tags: PropTypes.arrayOf(PropTypes.string).isRequired,
   mainImg: PropTypes.string.isRequired,
+  published: PropTypes.bool.isRequired,
 };
 
 export default EditorPane;

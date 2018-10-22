@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import EditorPane from '../../components/editor/EditorPane';
 import { connect } from 'react-redux';
-import { changeInput } from '../../store/actionCreators/editor';
+import { changeInput, changePublished } from '../../store/reducers/editor';
 
 class EditorPaneContainer extends Component {
   handleChangeInput = ({ name, value }) => {
@@ -10,7 +10,7 @@ class EditorPaneContainer extends Component {
   };
 
   render() {
-    const { title, tags, markdown, mainImg } = this.props;
+    const { title, tags, markdown, mainImg, published, changePublished } = this.props;
     const { handleChangeInput } = this;
 
     return (
@@ -19,7 +19,9 @@ class EditorPaneContainer extends Component {
         markdown={markdown}
         tags={tags}
         mainImg={mainImg}
+        published={published}
         onChangeInput={handleChangeInput}
+        changePublished={changePublished}
       />
     );
   }
@@ -27,6 +29,7 @@ class EditorPaneContainer extends Component {
 
 const mapDispatchToProps = dispatch => ({
   changeInput: payload => dispatch(changeInput(payload)),
+  changePublished: payload => dispatch(changePublished(payload)),
 });
 
 export default connect(
@@ -35,5 +38,6 @@ export default connect(
     markdown: state.editor.get('markdown'),
     tags: state.editor.get('tags'),
     mainImg: state.editor.get('mainImg'),
+    published: state.editor.get('published'),
   }), mapDispatchToProps,
 )(EditorPaneContainer);

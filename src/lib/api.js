@@ -16,7 +16,7 @@ export const getPostList = ({ tag, page }) => {
   const validatedTag = (!tag) ? '' : tag;
   return axios.get(`${apiUri}/api/posts/?page=${page}&tag=${validatedTag}`);
 };
-export const editPost = ({ id, title, body, tags, mainImg }) => axios.patch(`${apiUri}/api/posts/${id}`, { title, body, tags, mainImg });
+export const editPost = ({ id, title, body, tags, published, mainImg }) => axios.patch(`${apiUri}/api/posts/${id}`, { title, body, tags, mainImg, published });
 export const removePost = id => axios.delete(`${apiUri}/api/posts/${id}`);
 
 export const login = password => axios.post(`${apiUri}/api/auth/login`, { password });

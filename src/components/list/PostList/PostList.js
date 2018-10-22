@@ -6,6 +6,7 @@ import removeMd from 'remove-markdown';
 import _ from 'lodash';
 import { css } from 'react-emotion';
 import { BeatLoader } from 'react-spinners';
+import PropTypes from 'prop-types';
 import styles from './PostList.scss';
 
 const cx = classNames.bind(styles);
@@ -34,6 +35,7 @@ const PostItem = ({ title, body, publishedDate, tags, id, mainImg }) => {
   );
 };
 
+// List loader css
 const override = css`
     position: absolute;
     top: 50%;
@@ -61,4 +63,17 @@ const PostList = ({ posts, loading }) => (
   </div>
 );
 
+PostItem.propTypes = {
+  title: PropTypes.string.isRequired,
+  body: PropTypes.string.isRequired,
+  tags: PropTypes.string.isRequired,
+  publishedDate: PropTypes.string.isRequired,
+  id: PropTypes.bool.isRequired,
+  mainImg: PropTypes.bool.isRequired,
+};
+
+PostList.propTypes = {
+  posts: PropTypes.object.isRequired,
+  loading: PropTypes.bool.isRequired,
+};
 export default PostList;

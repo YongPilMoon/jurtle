@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import EditorHeader from '../../components/editor/EditorHeader';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { initialize, writePost, editPost } from '../../store/reducers/editor';
+import PropTypes from 'prop-types';
+import EditorHeader from '../../components/editor/EditorHeader';
+import * as editorActions from '../../store/reducers/editor';
 import { queryParser } from '../../helper';
-import { getPost } from '../../store/reducers/editor';
 
 class EditorHeaderContainer extends Component {
   componentDidMount() {
@@ -23,7 +23,8 @@ class EditorHeaderContainer extends Component {
   };
 
   handleSubmit = async () => {
-    const { title, markdown, tags, writePost, editPost, history, location, mainImg, published } = this.props;
+    const { title, markdown, tags,
+      writePost, editPost, history, location, mainImg, published } = this.props;
     const post = {
       title,
       body: markdown,
@@ -49,7 +50,6 @@ class EditorHeaderContainer extends Component {
     }
   };
 
-
   render() {
     const { handleGoBack, handleSubmit } = this;
     const { id } = queryParser(this.props.location.search);
@@ -63,11 +63,19 @@ class EditorHeaderContainer extends Component {
   }
 }
 
+EditorHeaderContainer.propTypes = {
+  initialize: PropTypes.func.isRequired,
+  location: PropTypes.func.isRequired,
+  getPost: PropTypes.func.isRequired,
+  history: PropTypes.object.isRequired,
+  postId: PropTypes.string.isRequired,
+};
+
 const mapDispatchToProps = dispatch => ({
-  initialize: () => dispatch(initialize()),
-  writePost: post => dispatch(writePost(post)),
-  getPost: id => dispatch(getPost(id)),
-  editPost: post => dispatch(editPost(post)),
+  initialize: () => dispatch(editorActions.initialize()),
+  writePost: post => dispatch(editorActions.writePost(post)),
+  getPost: id => dispatch(editorActions.getPost(id)),
+  editPost: post => dispatch(editorActions.editPost(post)),
 });
 
 export default connect(

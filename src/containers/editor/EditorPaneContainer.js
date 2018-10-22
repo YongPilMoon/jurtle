@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
-import EditorPane from '../../components/editor/EditorPane';
 import { connect } from 'react-redux';
-import { changeInput, changePublished } from '../../store/reducers/editor';
+import PropTypes from 'prop-types';
+import EditorPane from '../../components/editor/EditorPane';
+import * as editorActions from '../../store/reducers/editor';
+
 
 class EditorPaneContainer extends Component {
   handleChangeInput = ({ name, value }) => {
-    const { changeInput } = this.props;
-    changeInput({ name, value });
+    this.props.changeInput({ name, value });
   };
 
   render() {
@@ -27,9 +28,19 @@ class EditorPaneContainer extends Component {
   }
 }
 
+EditorPaneContainer.propTypes = {
+  changePublished: PropTypes.func.isRequired,
+  changeInput: PropTypes.func.isRequired,
+  title: PropTypes.string.isRequired,
+  markdown: PropTypes.string.isRequired,
+  tags: PropTypes.string.isRequired,
+  mainImg: PropTypes.string.isRequired,
+  published: PropTypes.bool.isRequired,
+};
+
 const mapDispatchToProps = dispatch => ({
-  changeInput: payload => dispatch(changeInput(payload)),
-  changePublished: payload => dispatch(changePublished(payload)),
+  changeInput: payload => dispatch(editorActions.changeInput(payload)),
+  changePublished: payload => dispatch(editorActions.changePublished(payload)),
 });
 
 export default connect(

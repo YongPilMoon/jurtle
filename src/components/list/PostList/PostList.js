@@ -3,7 +3,6 @@ import classNames from 'classnames/bind';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
 import removeMd from 'remove-markdown';
-import _ from 'lodash';
 import { css } from 'react-emotion';
 import { BeatLoader } from 'react-spinners';
 import PropTypes from 'prop-types';
@@ -43,12 +42,14 @@ const override = css`
     transform: translateX(-50%);
 `;
 
-const PostList = ({ posts, loading }) => (
-  loading ? <BeatLoader className={override} /> : <div className={cx('post-list')}>
-    { _.map(posts, (post) => {
-      const { _id, title, body, publishedDate, tags, mainImg } = post;
-      return (
-        <PostItem
+const PostList = ({ posts, loading, logged }) => {
+  if (loading) { return <BeatLoader className={override} />; }
+  const filteredPost = logged ? posts : posts.filter(post => post.published === true);
+  return (<div className={cx('post-list')}>
+    { filteredPost
+      .map((post) => {
+        const { _id, title, body, publishedDate, tags, mainImg } = post;
+        return (<PostItem
           title={title}
           body={body}
           publishedDate={publishedDate}
@@ -56,12 +57,11 @@ const PostList = ({ posts, loading }) => (
           tags={tags}
           key={_id}
           id={_id}
-        />
-      );
-    },
-    )}
-  </div>
-);
+        />);
+      },
+      )}
+  </div>);
+};
 
 PostItem.propTypes = {
   title: PropTypes.string.isRequired,
@@ -75,5 +75,6 @@ PostItem.propTypes = {
 PostList.propTypes = {
   posts: PropTypes.object.isRequired,
   loading: PropTypes.bool.isRequired,
+  logged: PropTypes.bool.isRequired,
 };
 export default PostList;

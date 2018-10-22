@@ -25,10 +25,10 @@ class ListContainer extends Component {
   }
 
   render() {
-    const { posts, loading } = this.props;
+    const { posts, loading, logged } = this.props;
     return (
       <Fragment>
-        <PostList posts={posts} loading={loading} />
+        <PostList posts={posts} loading={loading} logged={logged} />
         {/*<Pagination page={page} lastPage={lastPage} tag={tag} />*/}
       </Fragment>
     );
@@ -41,6 +41,7 @@ const mapStateToProps = state => ({
   lastPage: state.list.get('lastPage'),
   posts: state.list.get('posts').toJS(),
   loading: state.list.get('loading'),
+  logged: state.base.get('logged'),
 });
 
 const mapDispatchToProps = dispatch => ({

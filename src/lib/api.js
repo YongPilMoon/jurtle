@@ -10,7 +10,7 @@ export const setAuthToken = (token) => {
   }
 };
 
-export const writePost = ({ title, body, tags, mainImg }) => axios.post(`${apiUri}/api/posts`, { title, body, tags, mainImg });
+export const writePost = ({ title, body, tags, mainImg, published }) => axios.post(`${apiUri}/api/posts`, { title, body, tags, mainImg, published });
 export const getPost = id => axios.get(`${apiUri}/api/posts/${id}`);
 export const getPostList = ({ tag, page }) => {
   const validatedTag = (!tag) ? '' : tag;

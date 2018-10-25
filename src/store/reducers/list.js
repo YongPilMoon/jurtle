@@ -10,7 +10,7 @@ const FETCH_POST_LIST = 'FETCH_POST_LIST';
 const initialState = Map({
   loading: false,
   posts: List(),
-  lastPage: null,
+  lastPage: 0,
 });
 
 export const getPostList = ({ page, tag }) => async (dispatch) => {

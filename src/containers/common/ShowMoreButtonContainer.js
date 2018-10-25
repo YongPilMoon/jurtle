@@ -13,7 +13,7 @@ class ShowMoreButtonContainer extends Component {
 }
 
 ShowMoreButtonContainer.propTypes = {
-  getMorePostList: PropTypes.object.isRequired,
+  getMorePostList: PropTypes.func.isRequired,
   lastPage: PropTypes.number.isRequired,
 };
 

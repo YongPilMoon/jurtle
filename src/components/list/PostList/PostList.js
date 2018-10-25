@@ -66,14 +66,14 @@ const PostList = ({ posts, loading, logged }) => {
 PostItem.propTypes = {
   title: PropTypes.string.isRequired,
   body: PropTypes.string.isRequired,
-  tags: PropTypes.string.isRequired,
+  tags: PropTypes.array.isRequired,
   publishedDate: PropTypes.string.isRequired,
-  id: PropTypes.bool.isRequired,
-  mainImg: PropTypes.bool.isRequired,
+  id: PropTypes.string.isRequired,
+  mainImg: PropTypes.string.isRequired,
 };
 
 PostList.propTypes = {
-  posts: PropTypes.object.isRequired,
+  posts: PropTypes.array.isRequired,
   loading: PropTypes.bool.isRequired,
   logged: PropTypes.bool.isRequired,
 };

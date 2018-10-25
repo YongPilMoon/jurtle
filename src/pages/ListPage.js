@@ -23,7 +23,7 @@ const ListPage = ({ match }) => {
           tag={tag}
         />
       </ListWrapper>
-      <ShowMoreButtonContainer />
+      <ShowMoreButtonContainer tag={tag} />
     </PageTemplate>
   );
 };

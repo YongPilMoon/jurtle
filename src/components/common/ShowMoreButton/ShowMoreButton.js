@@ -18,8 +18,8 @@ const styles = () => ({
   },
 });
 
-const ShowMoreButton = ({ classes, getMorePostList, lastPage }) => (
-  <Button aria-label="Add" className={classes.button} onClick={() => getMorePostList({ page: lastPage })}>
+const ShowMoreButton = ({ classes, getMorePostList, lastPage, tag }) => (
+  <Button aria-label="Add" className={classes.button} onClick={() => getMorePostList({ page: lastPage, tag })}>
       Show More
   </Button>
 );
@@ -28,6 +28,7 @@ ShowMoreButton.propTypes = {
   classes: PropTypes.object.isRequired,
   getMorePostList: PropTypes.func.isRequired,
   lastPage: PropTypes.number.isRequired,
+  tag: PropTypes.string.isRequired,
 };
 
 export default withStyles(styles)(ShowMoreButton);

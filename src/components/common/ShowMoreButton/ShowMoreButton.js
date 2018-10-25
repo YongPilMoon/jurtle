@@ -12,21 +12,22 @@ const styles = () => ({
     position: 'absolute',
     left: '50%',
     transform: 'translateX(-50%)',
-    marginTop: '30px',
     '&:hover': {
       backgroundColor: '#fafafa',
     },
   },
 });
 
-const ShowMoreButton = ({ classes }) => (
-  <Button aria-label="Add" className={classes.button}>
+const ShowMoreButton = ({ classes, getMorePostList, lastPage }) => (
+  <Button aria-label="Add" className={classes.button} onClick={() => getMorePostList({ page: lastPage })}>
       Show More
   </Button>
 );
 
 ShowMoreButton.propTypes = {
   classes: PropTypes.object.isRequired,
+  getMorePostList: PropTypes.func.isRequired,
+  lastPage: PropTypes.number.isRequired,
 };
 
 export default withStyles(styles)(ShowMoreButton);

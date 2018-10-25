@@ -11,6 +11,7 @@ const initialState = Map({
   loading: false,
   posts: List(),
   lastPage: 0,
+  isLast: true,
 });
 
 export const getPostList = ({ page, tag }) => async (dispatch) => {
@@ -45,12 +46,20 @@ export default handleActions({
   [GET_POST_LIST]: (state, action) => {
     const posts = action.payload.data;
     const lastPage = parseInt(action.payload.headers['last-page'], 10);
-    return state.set('posts', fromJS(posts)).set('lastPage', lastPage).set('loading', false);
+    const isLast = action.payload.headers['is-last'] === 'true';
+    return state.set('posts', fromJS(posts))
+      .set('lastPage', lastPage)
+      .set('loading', false)
+      .set('isLast', isLast);
   },
   [GET_MORE_POST_LIST]: (state, action) => {
     const newPosts = action.payload.data;
+    const isLast = action.payload.headers['is-last'] === 'true';
     const lastPage = parseInt(action.payload.headers['last-page'], 10);
-    return state.set('posts', state.get('posts').concat(newPosts)).set('lastPage', lastPage).set('loading', false);
+    return state.set('posts', state.get('posts').concat(newPosts))
+      .set('lastPage', lastPage)
+      .set('loading', false)
+      .set('isLast', isLast);
   },
   [FETCH_POST_LIST]: state => state.set('loading', true),
 }, initialState);

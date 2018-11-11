@@ -58,7 +58,6 @@ export default handleActions({
     const lastPage = parseInt(action.payload.headers['last-page'], 10);
     return state.set('posts', state.get('posts').concat(newPosts))
       .set('lastPage', lastPage)
-      .set('loading', false)
       .set('isLast', isLast);
   },
   [FETCH_POST_LIST]: state => state.set('loading', true),

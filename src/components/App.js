@@ -5,6 +5,7 @@ import Base from 'containers/common/Base';
 
 const App = () => (
   <div>
+    <Base />
     <Switch>
       <Route exact path="/" component={ListPage} />
       <Route path="/page/:page" component={ListPage} />
@@ -14,7 +15,6 @@ const App = () => (
       <Route path="/admin" component={Admin} />
       <Route component={NotFoundPage} />
     </Switch>
-    <Base />
   </div>
 );
 

@@ -75,8 +75,8 @@
     "lint": "./node_modules/.bin/eslint ."
   },
   "devDependencies": {
-    "node-sass": "^4.7.2",
-    "sass-loader": "^6.0.6"
+    "sass-loader": "^6.0.6",
+    "node-sass": "^4.10.0"
   },
   "jest": {
     "collectCoverageFrom": [
